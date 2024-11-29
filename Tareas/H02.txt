@@ -1,0 +1,5 @@
+Select sum(Years_employed) as longesttime,Name from Employees Group by Name order by Longesttime desc limit 1;
+
+Select Role, avg(Years_employed) from Employees group by Role;
+
+Select Building, sum(Years_employed) as Total_number_o_employee_years from Employees group by Building;

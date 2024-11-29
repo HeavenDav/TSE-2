@@ -1,0 +1,47 @@
+Exámen 298950
+# Teoría
+
+1. b
+
+2. a
+
+3. Distinct
+
+4. Ambos se usa para filtrar, la diferencia recae en la realización antes o después de la agregación: Where antes y Having después.
+
+5. d
+
+#######################################################################################################################################
+# Práctica
+
+1.Escribe un query para obtener el promedio de calificaciones por cada materia en la tabla calificaciones. Incluye solo aquellas materias que tienen al menos una calificación registrada. Ordena del mejor promedio al peor promedio.
+
+SELECT nombre_materia,
+	avg (calificacion) as PROMEDIO
+From calificaciones
+Group by nombre_materia
+HAVING Promedio not null
+order by PROMEDIO DESC;
+
+2.Escribe un query que muestre el nombre y apellido de los alumnos que tienen al menos una calificación registrada. Ordena el resultado por apellido.
+
+SELECT nombre as ALUMNO, 
+	apellido as APELLIDO,
+	calificacion
+FROM alumnos, calificaciones
+WHERE calificacion not NULL
+
+Order by APELLIDO ASC
+
+3.Escribe un query que muestre el nombre, apellido y calificación máxima de cada alumno. Considera solo las materias en las que el alumno ha recibido calificación.
+
+SELECT alumnos.apellido as APELLIDO,
+		alumnos.nombre as NOMBRE,
+		calificaciones.nombre_materia as ASIGNATURA,
+		max (calificaciones.calificacion) as MAX_CALF
+FROM alumnos
+	Join calificaciones
+	On alumnos.expediente = calificaciones.expediente
+	Group by nombre
+	Having MAX_CALF not NULL
+	Order by APELLIDO ASC
